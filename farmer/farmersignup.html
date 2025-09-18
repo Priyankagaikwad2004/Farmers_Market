@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Signup</title>
+  <link rel="icon" href="./desktop/farmer.png">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden; /* Prevent scrolling */
+      background: url('https://img.freepik.com/free-photo/planet-earth-surrounded-by-nature-vegetation_23-2151587958.jpg?t=st=1727961533~exp=1727965133~hmac=d52762de4824177314e238f8a6769a71b38e4ad1f2f90552ee2c2dcc20870d7a&w=1060') no-repeat center center fixed;
+      background-size: cover;
+      position: relative; /* Enable absolute positioning for child elements */
+    }
+
+    .home-button {
+      position: absolute; /* Position the button absolutely */
+      top: 20px; /* Distance from the top */
+      left: 20px; /* Distance from the left */
+      background-color: #28a745; /* Green color for home button */
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none; /* Remove underline */
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .home-button:hover {
+      background-color: #223a27; /* Darker green on hover */
+    }
+
+    .log-form {
+      background: rgba(0, 0, 0, 0.7); /* Black transparent background */
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      width: 400px; /* Increased width */
+      text-align: left; /* Align text to the left */
+      color: white; /* Text color to white for readability */
+      margin: 20px auto; /* Center the form within the container */
+    }
+
+    .log-form h2 {
+      margin: 0 0 20px; /* Spacing below the heading */
+      color: #fff; /* White color for heading */
+    }
+
+    .log-form label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+      color: #fff; /* White for labels */
+    }
+
+    .log-form input[type="text"],
+    .log-form input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      background: rgba(255, 255, 255, 0.8); /* Slightly transparent white for inputs */
+      color: #333; /* Dark color for input text */
+    }
+
+    .button-container {
+      display: flex; /* Use flexbox to align buttons side by side */
+      justify-content: space-between; /* Space between buttons */
+      margin-top: 10px; /* Margin above buttons */
+    }
+
+    .log-form button {
+      padding: 10px;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+      flex: 1; /* Make buttons take equal space */
+      margin: 0 5px; /* Spacing between buttons */
+    }
+
+    .log-form button.signupbtns {
+      background-color: #007bff; /* Bootstrap primary color */
+    }
+
+    .log-form button.signupbtns:hover {
+      background-color: #0056b3; /* Darker shade on hover */
+    }
+
+    .log-form button.cancelbtn {
+      background-color: #dc3545; /* Red color for cancel button */
+    }
+
+    .log-form button.cancelbtn:hover {
+      background-color: #c82333; /* Darker red on hover */
+    }
+  </style>
+</head>
+
+<body>
+  <a href="index.php" class="home-button">Home</a> <!-- Home button positioned in the top left corner -->
+  <div class="log-form">
+    <h2>Farmer's SignUp</h2>
+    <form class="fr" action="partil/farmer_register.php" method="post">
+      <label for="name"><b>Name</b></label>
+      <input type="text" id="name" name="name" placeholder="Fullname" required />
+
+      <label for="mobile"><b>Mobile</b></label>
+      <input type="tel" id="mobile" name="mobile" placeholder="Mobile No." required />
+
+      <label for="note"><b>Address</b></label>
+      <input type="text" id="note" name="note" placeholder="Address" />
+
+      <div class="button-container">
+        <button type="submit" class="signupbtns">Sign Up</button>
+        <button type="button" class="cancelbtn" onclick="window.location.href='sell.php'">Cancel</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Product</title>
+    <link rel="icon" href="./desktop/farmer.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            /* Hide scrollbars */
+        }
+        
+        .imagep {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url(https://img.freepik.com/free-photo/countryside-field-sunny-day-countryside_181624-24010.jpg?t=st=1736410948~exp=1736414548~hmac=3fa7ad864fcd925de9710359c153228087efa4ffda65e0b743d5be3a70d81a80&w=996);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            /* Full viewport height */
+            width: 100vw;
+            /* Full viewport width */
+            box-sizing: border-box;
+            padding: 20px;
+        }
+        
+        .container {
+            color: white;
+            border-radius: 1rem;
+            text-align: center;
+            width: 90%;
+            /* Adjusted width to fit within viewport */
+            max-width: 800px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            box-sizing: border-box;
+            overflow: hidden;
+            /* Prevent internal overflow */
+        }
+        
+        input[type=text],
+        input[type=file] {
+            width: calc(100% - 24px);
+            /* Ensures inputs fit within container */
+            padding: 10px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.5);
+            box-sizing: border-box;
+        }
+        
+        .horizontal-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 8px 0;
+        }
+        
+        .horizontal-group input[type=text] {
+            flex: 1;
+            min-width: 0;
+            /* Ensures inputs don't overflow */
+        }
+        
+        .half-width {
+            flex: 1;
+        }
+        
+        .half-width input[type=file] {
+            width: calc(100% - 24px);
+        }
+        
+        input[type=text]:focus,
+        input[type=file]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+        
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .bt {
+            border-radius: 0.5rem;
+            background-color: #04AA6D;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            cursor: pointer;
+            opacity: 0.9;
+            transition: background-color 0.3s, opacity 0.3s;
+        }
+        
+        .bt1 {
+            border-radius: 0.5rem;
+            background-color: #aa4904;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            cursor: pointer;
+            opacity: 0.9;
+            transition: background-color 0.3s, opacity 0.3s;
+        }
+        
+        .bt:hover,
+        .bt1:hover {
+            opacity: 1;
+        }
+        
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, red, blue);
+            /* Red and blue gradient */
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        
+        .home-button:hover {
+            background: linear-gradient(45deg, blue, red);
+            /* Reverse gradient on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="imagep">
+        <a href="index.php"><button class="home-button">Home</button></a>
+
+        <form class="container" action="partil/farmer_product.php" method="POST" enctype="multipart/form-data">
+            <h1 style="color: white;">Product Information</h1>
+
+            <div class="horizontal-group">
+                <div class="half-width">
+                    <label for="pname"><b>Product Name</b></label>
+                    <input type="text" id="product_name" name="product_name" placeholder="Enter here" required />
+                </div>
+                <div class="half-width">
+                    <label for="fname"><b>Farmer Name</b></label>
+                    <input type="text" id="farmer_name" name="farmer_name" placeholder="Enter here" required />
+                </div>
+            </div>
+
+            <div class="horizontal-group">
+                <div class="half-width">
+                    <label for="species"><b>Species Name</b></label>
+                    <input type="text" id="species_name" name="species_name" placeholder="Enter here" required />
+                </div>
+                <div class="half-width">
+                    <label for="weights"><b>Weight</b></label>
+                    <input type="text" id="weights" name="weight" placeholder="Enter here" required />
+                </div>
+            </div>
+
+            <div class="horizontal-group">
+                <div class="half-width">
+                    <label for="price"><b>Price</b></label>
+                    <input type="text" id="price" name="price" placeholder="Enter here" required />
+                </div>
+                <div class="half-width">
+                    <label for="my_image"><b>Product Image</b></label>
+                    <input type="file" name="uploadfile">
+                    <!-- <input type="submit" name="submit" value="upload file"> -->
+                </div>
+            </div>
+
+            <label for="statement"><b>Statement</b></label>
+            <input type="text" id="statement" name="statement" placeholder="Enter here" required />
+
+            <div class="button-group">
+                <input type="submit" name="submit" class="bt" value="Upload">
+
+
+                <!-- <button type="submit" class="bt">Submit</button> -->
+                <a href="sell.php"><button type="button" class="bt1">Cancel</button></a>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://img.freepik.com/free-photo/selective-focus-shot-lilac-flowers-blooming-field_181624-28677.jpg?t=st=1736418855~exp=1736422455~hmac=90095f132a8d9e3946b0a995b47825813a25586797769dbc5c29f36c7192baf8&w=996') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+        }
+        .signup-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            width: 100%;
+            max-width: 400px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+        .signup-container h2 {
+            margin-top: 0;
+            text-align: center;
+            color: white;
+        }
+        .signup-container input[type="text"],
+        .signup-container input[type="email"],
+        .signup-container input[type="tel"],
+        .signup-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #555;
+            border-radius: 4px;
+            box-sizing: border-box;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .signup-container select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+        .signup-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .signup-container button:hover {
+            background-color: #0056b3;
+        }
+        .signup-container a {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .signup-container a:hover {
+            text-decoration: underline;
+        }
+        .signup-container .error-message {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .error {
+            border-color: red;
+        }
+        /* Home button styles */
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #3b72ea;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .home-button:hover {
+            box-shadow : 0 4px 8px rgb(255, 255, 255)
+            /* transform: translateY(-2px);
+            background-color: #050a10; */
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Button -->
+    <a href="index.php" class="home-button">Home</a>
+
+    <div class="signup-container">
+        <h2>Signup</h2>
+        <form id="signup-form" action="/farmer/partil/signup.php" method="post">
+            <select id="contact-method" name="contact-method" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="email">Email</option>
+                <option value="phone">Phone Number</option>
+            </select>
+
+            <div id="contact-info">
+                <input type="email" id="email" name="email" placeholder="Email (optional)" aria-label="Email" style="display: none;">
+                <input type="tel" id="phone" name="phone" placeholder="Phone number (optional)" style="display: none;">
+            </div>
+
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+            <button type="submit">Signup</button>
+            <a href="user_login.html">Already have an account? Login</a>
+            <div id="error-message" class="error-message"></div>
+        </form>
+    </div>
+    <script>
+        document.getElementById('contact-method').addEventListener('change', function() {
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
+
+            if (this.value === 'email') {
+                emailInput.style.display = 'block';
+                phoneInput.style.display = 'none';
+            } else if (this.value === 'phone') {
+                emailInput.style.display = 'none';
+                phoneInput.style.display = 'block';
+            } else {
+                emailInput.style.display = 'none';
+                phoneInput.style.display = 'none';
+            }
+        });
+
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            const contactMethod = document.getElementById('contact-method').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const errorMessage = document.getElementById('error-message');
+
+            // Clear previous error messages and styles
+            errorMessage.textContent = '';
+            document.querySelectorAll('input').forEach(input => input.classList.remove('error'));
+
+            // Validate based on selected method
+            if (contactMethod === 'email' && !email) {
+                errorMessage.textContent = 'Please enter your email.';
+                document.getElementById('email').classList.add('error');
+                event.preventDefault();
+                return;
+            }
+
+            if (contactMethod === 'phone' && !phone) {
+                errorMessage.textContent = 'Please enter your phone number.';
+                document.getElementById('phone').classList.add('error');
+                event.preventDefault();
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                errorMessage.textContent = 'Passwords do not match.';
+                document.getElementById('password').classList.add('error');
+                document.getElementById('confirm-password').classList.add('error');
+                event.preventDefault();
+                return;
+            }
+        });
+    </script>
+</body>
+</html>
